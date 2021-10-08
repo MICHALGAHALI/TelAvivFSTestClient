@@ -1,27 +1,40 @@
-# Getlocationapp
+##part 1.
+#angular:
+in the proxy (http://api.open-notify.org/iss-now.json) data about the current location of the space station
+general api doc with examples 
+ http://open-notify.org/Open-Notify-API/ISS-Location-Now/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
+1.display the current cordinates and time and update the values every 2 secound 
+Observable
+    .interval(2*60*1000)
+    .timeInterval()
+    .mergeMap(() => this.notificationService.getNotifications(this.token))
+    .subscribe(data => {
+        console.log(data);
+    });
 
-## Development server
+2.add button bellow and open dialog in the dialog the user will enter note about the location 
+(the location at the time the user clicked the button) 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+3. after the user click 'save' in the dialog , the corrdinates and the user note will enter to a new row in a list
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+##part 2. 
+#.net :
+1. add button 'save locations' 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. create server api project 
 
-## Running unit tests
+3. create model to accept the data from the client.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. keep all data the user entered to a json file 
 
-## Running end-to-end tests
+note: keep SOILD in mind
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#Good luck.
+
+
+
