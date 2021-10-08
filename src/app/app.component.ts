@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   issLocation$: Observable<issNow> = this._issLocation.Get();
   locations: issNow[] = [];
   isSuccess$: Observable<any> = of();
+  error: string = '';
   constructor(private _issLocation: IssLocationService, private _dialog: MatDialog, private _cd: ChangeDetectorRef) { }
   ngOnInit(): void {
     const tik$: Observable<number> = interval(2 * 60 * 1000);
@@ -42,10 +43,18 @@ export class AppComponent implements OnInit {
     })
   }
   saveLocations() {
-    this.isSuccess$ = this._issLocation.Save(this.locations).pipe(tap((a) => { console.log(a) }))
+    this.isSuccess$=this._issLocation.Save(this.locations).pipe(
+      catchError((err) => {
+        this.error = err.message;
+        return of([])
+      }),
+      map((res: Response) =>{
+        this.locations=new Array()//init after save        
+        return res;
+      })
+      
+    )
   }
-
-  title = 'getlocationapp';
 }
 
 

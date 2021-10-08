@@ -1,7 +1,9 @@
 {{issLocation$|async|json}}
 <button mat-raised-button (click)="openDialog()">add location</button>
+<br/>
 <button mat-raised-button (click)="saveLocations()">save locations</button>
 {{ locations|json}}
-<label>תוצאה </label>
-{{isSuccess$|async|json}}
-<!-- {{result$|async|json}} -->
+<br/>
+<label>status request </label>
+{{isSuccess$|async}}
+{{ error }}

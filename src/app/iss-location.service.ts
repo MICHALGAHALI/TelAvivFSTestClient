@@ -19,8 +19,6 @@ export class IssLocationService {
     const url = `${this.LOCAL_URL}/api/saveEnteredUser`;
     let formData: FormData = new FormData();
     formData.append('locations', JSON.stringify(locations));
-    return this.http.post(url, formData).pipe(
-      catchError((err)=>{console.log(err);return of([])})
-    );
+    return this.http.post(url, formData);
   }
 }
